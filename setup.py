@@ -1,6 +1,4 @@
-import os
 import pathlib
-import pkg_resources
 from setuptools import setup, find_packages
 
 
@@ -10,8 +8,6 @@ EXTRAS = {}
 
 
 def _read_file(fname):
-    # this_dir = os.path.abspath(os.path.dirname(__file__))
-    # with open(os.path.join(this_dir, fname)) as f:
     with pathlib.Path(fname).open() as fp:
         return fp.read()
 
@@ -19,7 +15,9 @@ def _read_file(fname):
 def _read_install_requires():
     with pathlib.Path("requirements.txt").open() as fp:
         return [
-            str(requirement) for requirement in pkg_resources.parse_requirements(fp)
+            line.strip()
+            for line in fp
+            if line.strip() and not line.startswith("#")
         ]
 
 
