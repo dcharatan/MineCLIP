@@ -1,3 +1,5 @@
+# forked to make this installable as a metric
+
 # MineCLIP: Foundation Model for MineDojo
 <div align="center">
 
